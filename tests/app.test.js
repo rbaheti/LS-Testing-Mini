@@ -46,6 +46,10 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
       expect(Sean).to.be.an('object');
     });
     // write a test to check if Seans's favorite food is 'Pizza'.
+    it('his favorite food should be "Pizza"', () => {
+      const Sean = cases.Sean;
+      expect(Sean.favFood).to.equal('Pizza');
+    });
   });
 
   describe('Ryan', () => {
@@ -54,6 +58,11 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
       expect(Ryan).to.be.an('object');
     });
     // write a test to see if Ryan's favBook is `not` 'Harry Potter'.
+    it('his favorite book is not "Harry Potter"', () => {
+      const Ryan = cases.Ryan;
+      expect(Ryan.favBook).not.equal('Harry Potter');
+    });
+
   });
 
   describe('Austen', () => {
@@ -62,6 +71,10 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
       expect(Austen).to.be.an('object');
     });
     // write a test to see if Austen's favColor is not 'Gold'.
+    it('his favorite color is not "Gold"', () => {
+      const Austen = cases.Austen;
+      expect(Austen.favColor).not.equal('Gold');
+    });
   });
 
   describe('Karthik', () => {
@@ -70,6 +83,10 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
       expect(Karthik).to.be.an('object');
     });
     // write a test to check if Karthik's favActivity is 'Rock Climbing'.
+    it('his favorite activity is "Rock Climbing"', () => {
+      const Karthik = cases.Karthik;
+      expect(Karthik.favActivity).to.equal('Rock Climbing');
+    });
   });
 
   describe('addNums', () => {
@@ -88,14 +105,9 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
 
       //assert
       expect(addNums(undefined, 5)).to.equal(5);
-      //expect(addNums('2', 3)).to.equal(5);
+      expect(addNums('3', 2)).to.equal(5);
       expect(addNums('two', 3)).to.be.NaN;
       expect(addNums(3, [])).to.be.NaN;
-    });
-
-    it('should return the number passed when passed only one number', () => {
-      const addNums = cases.addNums;
-      expect(addNums).to.be.a('function');
     });
 
   });
@@ -110,7 +122,9 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
       const callBack = sinon.spy();
       const newCbInvoker = cases.callBackInvoker;
       // pass our spy `callBack` to our newCbInvoker fn. 
+      newCbInvoker(callBack);
       // write a test that to see if our callback has been called.
+      expect(callBack).to.have.been.calledOnce;
         // hint - you will need to look at https://github.com/domenic/sinon-chai to see syntax around this
     });
   });
@@ -122,9 +136,10 @@ describe('Cases from app.js', () => { // this is a testing suite made up of suit
     });
     //similiar to above where we are utilizing our spy from sinon, this assertion should test if a cb is called x times.
     it('should call a callback for n times passed to cases.iterator', () => {
-
+      const callBack = sinon.spy();
+      const iterator = cases.iterator;
+      iterator(4, callBack);
+      expect(callBack).to.have.callCount(4);
     });
   });
-
-  
 });

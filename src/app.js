@@ -41,8 +41,7 @@ const Karthik = {
 };
 
 const addNums = (x = 0, y = 0) => {
-  if(typeof(x) !== 'number' || typeof(y) !== 'number' ) return NaN;
-  return x + y;
+  return parseInt(x, 10) + parseInt(y, 10);
 };
 
 const callBackInvoker = (cb) => {
